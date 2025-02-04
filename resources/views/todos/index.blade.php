@@ -15,20 +15,21 @@
         @if (session('success'))
                 <h6 class="alert alert-success">{{ session('success') }}</h6>
         @endif
-            <label for="title" class="form-label">Título de la tarea</label>
+            <label for="title" class="form-label">Placa a registrar</label>
             <input type="text" class="form-control mb-2" name="title" id="exampleFormControlInput1" placeholder="">
 
-            <label for="category_id" class="form-label">Categoria de la tarea</label>
+            <label for="category_id" class="form-label">Cliente asociado a la placa</label>
             <select name="category_id" class="form-select">
                 @foreach ($categories as $category)
                     <option value="{{$category->id}}">{{$category->name}}</option>
                 @endforeach
             </select>
-            <input type="submit" value="Crear tarea" class="btn btn-primary my-2" />
+            <input type="submit" value="Registrar" class="btn btn-primary my-2" />
         </div>
     </form>
 
-    <div >
+    <!-- Mostrar el listado completo de placas -->
+    <!-- <div >
         @foreach ($todos as $todo)
         
             <div class="row py-1">
@@ -46,7 +47,7 @@
             </div>
             
         @endforeach
-    </div>
+    </div> -->
     </div>
 </div>
 @endsection

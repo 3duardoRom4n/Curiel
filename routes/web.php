@@ -3,6 +3,12 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TodosController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\PlacasController;
+use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
+use Illuminate\Support\Facades\Auth;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,8 +21,15 @@ use App\Http\Controllers\CategoriesController;
 */
 
 Route::get('/', function () {
-    return view('main');
+    return view('auth.login');
 });
+
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('showlogin');
+Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+Route::get('/register', [RegisterController::class, 'show'])->name('register.form');
+Route::post('/register', [RegisterController::class, 'register'])->name('register');
 
 Route::get('/tareas', [TodosController::class, 'index'])->name('todos');
 
@@ -27,3 +40,12 @@ Route::patch('/tareas/{id}', [TodosController::class, 'update'])->name('todos-up
 Route::delete('/tareas/{id}', [TodosController::class, 'destroy'])->name('todos-destroy');
 
 Route::resource('categories', CategoriesController::class);
+
+Route::get('/placas', [PlacasController::class, 'index'])->name('placas.index');
+Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
+
+Route::get('/main', function () {
+    return view('main');
+})->middleware('auth')->name('main');
+
+

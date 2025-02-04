@@ -48,7 +48,7 @@ class CategoriesController extends Controller
         $category->color = $request->color;
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Categoría agregada');
+        return redirect()->route('categories.index')->with('success', 'Cliente agregado');
     }
 
     /**
@@ -89,7 +89,7 @@ class CategoriesController extends Controller
         $category->color = $request->color;
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Categoría actualizada');
+        return redirect()->route('categories.index')->with('success', 'Cliente actualizado');
     }
 
     /**
@@ -106,6 +106,6 @@ class CategoriesController extends Controller
             $todo->delete(); // <-- direct deletion
          });
         $category->delete();
-        return redirect()->route('categories.index')->with('success', 'Categoría eliminada');
+        return redirect()->route('categories.index')->with('success', 'Cliente eliminado');
     }
 }

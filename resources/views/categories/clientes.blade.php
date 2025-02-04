@@ -4,35 +4,11 @@
 
 <div class="container w-25 border p-4">
     <div class="row mx-auto">
-    <form  method="POST" action="{{route('categories.store')}}">
-        @csrf
+    <h2>Clientes</h2>
+    <table class="table table-striped">
+        <tbody>
 
-        <div class="mb-3 col">
-
-        @error('name')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-
-         @error('color')
-            <div class="alert alert-danger">{{ $message }}</div>
-        @enderror
-
-        @if (session('success'))
-                <h6 class="alert alert-success">{{ session('success') }}</h6>
-        @endif
-
-            <label for="exampleFormControlInput1" class="form-label">Nombre del cliente</label>
-            <input type="text" class="form-control mb-2" name="name" id="exampleFormControlInput1" placeholder="">
-            
-            <label for="exampleColorInput" class="form-label">Elige un color para identificar el cliente</label>
-            <input type="color" class="form-control form-control-color" name="color" id="exampleColorInput" value="#563d7c" title="Choose your color">
-
-            <input type="submit" value="Crear cliente" class="btn btn-primary my-2" />
-        </div>
-    </form>
-
-    <!-- Mostrar el listado completo de Clientes -->
-    <!-- <div >
+    <div >
         @foreach ($categories as $category)
             <div class="row py-1">
                 <div class="col-md-9 d-flex align-items-center">
@@ -45,10 +21,10 @@
                         <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal{{$category->id}}">Eliminar</button>
                     
                 </div>
-            </div> -->
+            </div>
 
             <!-- MODAL -->
-            <!-- <div class="modal fade" id="modal{{$category->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="modal{{$category->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
@@ -73,7 +49,11 @@
             </div>
             
         @endforeach
-    </div> -->
+    </div>
+
+    </tbody>
+    </table>
     </div>
 </div>
+
 @endsection

@@ -16,10 +16,10 @@
         @enderror
 
         <div class="mb-3">
-            <label for="title" class="form-label">Título de la tarea</label>
+            <label for="title" class="form-label">Actualice la placa</label>
             <input type="text" name="title" class="form-control" value="{{ $todo->title}}">
         </div>
-        <button type="submit" class="btn btn-primary">Actualizar tarea</button>
+        <button type="submit" class="btn btn-primary">Actualizar registro de placa</button>
     </form>
 
     

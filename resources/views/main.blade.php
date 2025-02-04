@@ -31,24 +31,38 @@
 <body>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">Mis tareas</a>
+    <a class="navbar-brand" href="#">3du4rd0</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item">
-          <a class="nav-link" href="{{route('todos')}}">Tareas</a>
+          <a class="nav-link btn btn-info shadow-lg m-2" href="{{route('todos')}}">Registrar Placa</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{{route('categories.index')}}">Categorias</a>
+          <a class="nav-link btn btn-warning shadow-lg m-2" href="{{route('categories.index')}}">Registrar Cliente</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-info shadow-lg m-2" href="{{ route('placas.index') }}">Placas</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-warning shadow-lg m-2" href="{{ route('clientes.index') }}">Clientes</a>
         </li>
       </ul>
+    </div>
+    <div>
+    <form action="{{ route('logout') }}" method="POST" style="display: inline;">
+    @csrf
+    <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+</form>
     </div>
   </div>
 </nav>
 
 <img src="{{ asset('images/img_tarea.jpg') }}" alt="Logo" style="width: 180px; height: auto;">
+
+
 
         @yield('content')
 
