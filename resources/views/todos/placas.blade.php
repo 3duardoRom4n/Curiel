@@ -2,28 +2,43 @@
 
 @section('content')
 
-<div class="container w-25 border p-4">
+<div class="container w-50 border p-4">
     <div class="row mx-auto">
-    <h2>Placas</h2>
     <table class="table table-striped">
-        <tbody>
-        @foreach ($todos as $todo)
-        
-        <div class="row py-1">
-            <div class="col-md-9 d-flex align-items-center">
-                <a href="{{ route('todos-edit', ['id' => $todo->id]) }}">{{ $todo->title }}</a>
-            </div>
+    <thead class="table-dark">
+        <tr>
+        @if (session ('success'))
+            <h6 class="alert alert-success">{{ session('success') }}</h6>            
+        @endif
 
-            <div class="col-md-3 d-flex justify-content-end">
-                <form action="{{ route('todos-destroy', [$todo->id]) }}" method="POST">
-                    @method('DELETE')
+        @error('title')
+            <h6 class="alert alert-danger">{{ $message }}</h6>
+        @enderror
+            <th class="text-center">Título</th>
+            <th class="text-center">Tipo de Vehículo</th>
+            <th class="text-center">Fecha de Vencimiento</th>
+            <th class="text-center">Acción</th> <!-- Título con centrado de texto -->
+        </tr>
+    </thead>
+    <tbody>
+        @foreach ($todos as $todo)
+        <tr>
+            <td class="text-center"><a href="{{ route('todos-edit', ['id' => $todo->id]) }}">{{ $todo->title }}</a></td>
+            <td class="text-center">{{ $todo->tipo_vehiculo }}</td>
+            <td class="text-center">{{ $todo->fecha_venci }}</td>
+            <td class="text-center">      
+                <!-- Botón Editar -->                          
+                <a href="{{ route('todos-edit', ['id' => $todo->id]) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>Editar</a>      
+                
+                 <!-- Formulario para el botón Eliminar -->
+                <form action="{{ route('todos-destroy', [$todo->id]) }}" method="POST"  class="d-inline">
                     @csrf
-                    <button class="btn btn-danger btn-sm">Eliminar</button>
-                </form>
-            </div>
-        </div>
-        
-    @endforeach
+                    @method('DELETE')              
+                    <button type="submit" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i>Eliminar</button>
+                </form>           
+            </td>    
+        </tr>        
+        @endforeach
         </tbody>
     </table>
     </div>

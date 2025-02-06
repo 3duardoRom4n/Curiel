@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Todo;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class TodosController extends Controller
 {
@@ -19,12 +20,17 @@ class TodosController extends Controller
 
         $request->validate([
             'title' => 'required|min:3',
+            'tipo_vehiculo' => 'required|max:255',
+            'fecha_venci' => 'required|date',
         ]);
     
         $todo = new Todo;
         $todo->title = $request->title;
+        $todo->tipo_vehiculo = $request->tipo_vehiculo;
+        $todo->fecha_venci = $request->fecha_venci;
         $todo->category_id = $request->category_id;
         $todo->save();
+    
     
         return redirect()->route('todos')->with('success', 'Placa agregada con éxito');
     }
@@ -45,8 +51,10 @@ class TodosController extends Controller
         $todo = Todo::find($id);
         
         $todo->title = $request->title;
+        $todo->tipo_vehiculo = $request->tipo_vehiculo;
+        $todo->fecha_venci = $request->fecha_venci;
         $todo->save();
 
-        return redirect()->route('todos')->with('success', 'Placa actualizada');
+        return redirect()->route('placas.index')->with('success', 'Placa actualizada');
     }
 }
