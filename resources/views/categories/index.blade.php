@@ -25,7 +25,13 @@
             <input type="text" class="form-control mb-2" name="name" id="exampleFormControlInput1" placeholder="">
             
             <label for="exampleColorInput" class="form-label">Elige un color para identificar el cliente</label>
-            <input type="color" class="form-control form-control-color" name="color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+            <input type="color" class="form-control form-control-color mb-2" name="color" id="exampleColorInput" value="#563d7c" title="Choose your color">
+
+            <label for="exampleFormControlInput1" class="form-label">Referencia</label>
+            <input type="text" class="form-control mb-2" name="referencia" id="exampleFormControlInput1" placeholder="">
+
+            <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
+            <input type="text" class="form-control mb-2" name="telefono" id="exampleFormControlInput1" placeholder="">
 
             <input type="submit" value="Crear cliente" class="btn btn-primary my-2" />
         </div>

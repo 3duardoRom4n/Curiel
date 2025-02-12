@@ -41,11 +41,16 @@ class CategoriesController extends Controller
         $this->validate($request, [
             'name' => 'required|unique:categories|max:255',
             'color' => 'required|max:7',
+            'referencia'=> 'required|max:255',
+            'telefono'=> 'required|max:255',
+
         ]);
 
         $category = new Category;
         $category->name = $request->name;
         $category->color = $request->color;
+        $category->referencia = $request->referencia;
+        $category->telefono = $request->telefono;
         $category->save();
 
         return redirect()->route('categories.index')->with('success', 'Cliente agregado');
@@ -87,9 +92,11 @@ class CategoriesController extends Controller
         
         $category->name = $request->name;
         $category->color = $request->color;
+        $category->referencia = $request->referencia;
+        $category->telefono = $request->telefono;
         $category->save();
 
-        return redirect()->route('categories.index')->with('success', 'Cliente actualizado');
+        return redirect()->route('clientes.index')->with('success', 'Cliente actualizado');
     }
 
     /**

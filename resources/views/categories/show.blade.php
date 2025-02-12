@@ -28,7 +28,14 @@
             <label for="exampleColorInput" class="form-label">Elige un color para identificar el cliente</label>
             <input type="color" class="form-control form-control-color" name="color" id="exampleColorInput" value="{{ $category->color }}" title="Choose your color">
 
+            <label for="exampleFormControlInput1" class="form-label">Referencia</label>
+            <input type="text" class="form-control mb-2" name="referencia" id="exampleFormControlInput1" placeholder="" value="{{ $category->referencia }}">
+
+            <label for="exampleFormControlInput1" class="form-label">Teléfono</label>
+            <input type="text" class="form-control mb-2" name="telefono" id="exampleFormControlInput1" placeholder="" value="{{ $category->telefono }}">
+
             <input type="submit" value="Actualizar cliente" class="btn btn-primary my-2" />
+ 
         </div>
     </form>
 
@@ -36,7 +43,8 @@
     @if ($category->todos->count() > 0)
         @foreach ($category->todos as $todo )
             <div class="row py-1">
-                <div class="col-md-9 d-flex align-items-center">
+            <label for="exampleFormControlInput1" class="form-label mb-4">Placas registradas con este cliente</label> 
+                <div class="col-md-9 d-flex align-items-center">                
                     <a href="{{ route('todos-edit', ['id' => $todo->id]) }}">{{ $todo->title }}</a>
                 </div>
 
@@ -47,10 +55,15 @@
                         <button class="btn btn-danger btn-sm">Eliminar</button>
                     </form>
                 </div>
+                <a href="{{route('todos')}}" class="btn btn-warning my-4"><i class="fas fa-edit"></i>Agregar otra placa para este cliente</a>
             </div>
         @endforeach    
     @else
-        No hay placas registradas con este cliente
+
+    <label for="exampleFormControlInput1" class="form-label mb-2">No hay placas registradas con este cliente</label>        
+    
+        <a href="{{route('todos')}}" class="btn btn-warning my-2"><i class="fas fa-edit"></i>Agregar placa</a> 
+        
     @endif
     
     </div>
