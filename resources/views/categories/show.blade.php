@@ -49,14 +49,36 @@
                 </div>
 
                 <div class="col-md-3 d-flex justify-content-end">
-                    <form action="{{ route('todos-destroy', [$todo->id]) }}" method="POST">
-                        @method('DELETE')
-                        @csrf
-                        <button class="btn btn-danger btn-sm">Eliminar</button>
-                    </form>
+                    <!-- Botón Eliminar -->
+                 <button class="btn btn-danger btn-sm"  data-bs-toggle="modal" data-bs-target="#modal{{$todo->id}}">Eliminar</button>                         
+            </td>
+        </tr>
+                     
+            <!-- MODAL -->
+            <div class="modal fade" id="modal{{$todo->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Eliminar placa</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                    ¿Está seguro de eliminar la placa <strong>{{ $todo->title }}</strong>?
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No, cancelar</button>
+                        <form action="{{ route('todos-destroy', [$todo->id]) }}" method="POST">
+                            @method('DELETE')
+                            @csrf
+                            <button type="submit" class="btn btn-primary">Sí, eliminar placa</button>
+                        </form>
+                    </div>
+                    </div>
+                    </div>
                 </div>
-                <a href="{{route('todos')}}" class="btn btn-warning my-4"><i class="fas fa-edit"></i>Agregar otra placa para este cliente</a>
             </div>
+                    <a href="{{route('todos')}}" class="btn btn-warning my-4"><i class="fas fa-edit"></i>Agregar otra placa para este cliente</a>
+                </div>
         @endforeach    
     @else
 
