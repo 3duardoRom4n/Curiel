@@ -4,60 +4,36 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
 use App\Mail\SendMail;
 use App\Mail\SendMessageToEndUser;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
+
 
 class MailController extends Controller
 {
-    /**
-     * Muestra el formulario de contacto.
-     */
     public function mailform()
     {
         return view('mail');
     }
-
-    /**
-     * Procesa los datos del formulario y envía los correos.
-     */
     public function maildata(Request $request)
     {
-        // ✅ 1. Validar los datos del formulario
-        $validatedData = $request->validate([
-            'name'  => 'required|string|max:255',
-            'email' => 'required|email',
-            'sub'   => 'required|string|max:255',
-            'mess'  => 'required|string',
-        ]);
-
-        // ✅ 2. Extraer datos validados
-        $name  = $validatedData['name'];
-        $email = $validatedData['email'];
-        $sub   = $validatedData['sub'];
-        $mess  = $validatedData['mess'];
-
-        // ✅ 3. Datos adicionales para la plantilla de correo
+        $name = $request->name;
+        $email = $request->email;
+        $sub = $request->sub;
+        $mess = $request->mess;
         $mailData = [
             'url' => 'https://sandroft.com/',
         ];
 
-        try {
-            // ✅ 4. Enviar correo al destinatario principal (Administrador)
-            $adminEmail = "pruebasagicc23@gmail.com";
-            Mail::to($adminEmail)->send(new SendMail($name, $email, $sub, $mess, $mailData));
+        // Enviar email al destinatario principal
+        $send_mail = "pruebasagicc23@gmail.com";
+        Mail::to($send_mail)->send(new SendMail($name, $email, $sub, $mess, $mailData));
 
-            // ✅ 5. Enviar correo de confirmación al usuario
-            $senderMessage = "Thanks for your message, we will reply to you later.";
-            Mail::to($email)->send(new SendMessageToEndUser($name, $senderMessage, $mailData));
-
-            // ✅ 6. Retornar vista con mensaje de éxito
-            return back()->with('success', 'Correo enviado exitosamente.');
-        } catch (\Exception $e) {
-            // ✅ 7. Manejo de errores
-            Log::error('Error sending email: ' . $e->getMessage());
-            return back()->with('error', 'Hubo un problema al enviar el correo. Inténtalo nuevamente.');
-        }
+        // Enviar mensaje de confirmación al usuario que envió el correo
+        $senderMessage = "thanks for your message , we will reply you in later";
+        Mail::to($email)->send(new SendMessageToEndUser($name, $senderMessage, $mailData));
+            
+        return "Mail Send Successfully";
     }
 }
