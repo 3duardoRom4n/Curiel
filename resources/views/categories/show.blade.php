@@ -40,10 +40,11 @@
     </form>
 
     <div >
-    @if ($category->todos->count() > 0)
+    @if ($category->todos->count() > 0 )
+    <label for="exampleFormControlInput1" class="form-label mb-4">Placas registradas con este cliente</label> 
         @foreach ($category->todos as $todo )
             <div class="row py-1">
-            <label for="exampleFormControlInput1" class="form-label mb-4">Placas registradas con este cliente</label> 
+            
                 <div class="col-md-9 d-flex align-items-center">                
                     <a href="{{ route('todos-edit', ['id' => $todo->id]) }}">{{ $todo->title }}</a>
                 </div>
@@ -77,9 +78,11 @@
                     </div>
                 </div>
             </div>
-                    <a href="{{route('todos')}}" class="btn btn-warning my-4"><i class="fas fa-edit"></i>Agregar otra placa para este cliente</a>
                 </div>
-        @endforeach    
+        @endforeach
+        <div class="col-md-20 d-flex justify-content-end">
+        <a href="{{route('todos')}}" class="btn btn-warning my-4"><i class="fas fa-edit"></i>Agregar otra placa para este cliente</a>
+        </div>    
     @else
 
     <label for="exampleFormControlInput1" class="form-label mb-2">No hay placas registradas con este cliente</label>        
