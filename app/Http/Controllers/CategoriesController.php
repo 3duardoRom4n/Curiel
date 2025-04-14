@@ -115,4 +115,14 @@ class CategoriesController extends Controller
         $category->delete();
         return redirect()->route('categories.index')->with('success', 'Cliente eliminado');
     }
+
+    public function group()
+{
+    $category = Category::all()->groupBy('referencia'); // Agrupa por referencia
+    return view('categories.grupos', compact('category'));
+}
+
+
+
+
 }

@@ -47,6 +47,9 @@
         <li class="nav-item">
           <a class="nav-link btn btn-warning shadow-lg m-2" href="{{ route('clientes.index') }}">Clientes</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-warning shadow-lg m-2" href="{{ route('categories.group') }}">Grupos</a>
+        </li>
       </ul>
     </div>
     <div>

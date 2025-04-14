@@ -8,6 +8,7 @@ use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\MailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,12 +41,19 @@ Route::patch('/tareas/{id}', [TodosController::class, 'update'])->name('todos-up
 Route::delete('/tareas/{id}', [TodosController::class, 'destroy'])->name('todos-destroy');
 
 Route::resource('categories', CategoriesController::class);
+Route::get('/grupos', [CategoriesController::class, 'group'])->name('categories.group');
 
 Route::get('/placas', [PlacasController::class, 'index'])->name('placas.index');
 Route::get('/clientes', [ClientesController::class, 'index'])->name('clientes.index');
 
+
+
 Route::get('/main', function () {
     return view('main');
 })->middleware('auth')->name('main');
+
+// email send
+Route::get ('/mail',[MailController::class,'mailform']);
+Route::post ('/send-mail',[MailController::class,'maildata'])->name('send_mail');
 
 
